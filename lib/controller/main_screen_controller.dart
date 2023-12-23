@@ -2,12 +2,17 @@ import 'package:get/get.dart';
 
 class MainScreenController extends GetxController {
   RxInt currentIndex = 2.obs;
-  RxBool darkMode = true.obs;
+  RxBool darkTheme = false.obs;
   RxBool tabShow = false.obs;
 
   RxString aa = "Latest".obs ;
 
   RxString title = "Google News".obs;
+
+
+  changeTheme(bool value) {
+    darkTheme.value =value ;
+  }
 
   bottomOnTap(int value) {
     currentIndex.value = value;

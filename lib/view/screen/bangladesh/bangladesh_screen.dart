@@ -9,7 +9,7 @@ class BangladeshScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeadlinesScreen(),
+      body: HeadLinesScreen(),
     );
   }
 }
