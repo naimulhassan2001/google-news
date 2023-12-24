@@ -9,6 +9,8 @@ class CustomButtonOutLine extends StatelessWidget {
       this.radius = 8,
       this.horizontal = 10,
       this.fontWeight = FontWeight.w600,
+      this.textColor = Colors.blue,
+      this.outlineColor = const Color(0x86EAEAEA),
       required this.onTap});
 
   String title;
@@ -18,6 +20,9 @@ class CustomButtonOutLine extends StatelessWidget {
   double radius;
   double horizontal;
   FontWeight fontWeight;
+  Color textColor;
+
+  Color? outlineColor = const Color(0x86EAEAEA);
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +33,14 @@ class CustomButtonOutLine extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: horizontal),
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
-            side: const BorderSide(width: 1, color: Color(0x86EAEAEA)),
+            side: BorderSide(width: 1, color: outlineColor! ),
             borderRadius: BorderRadius.circular(radius),
           ),
         ),
         child: Center(
           child: Text(title,
               style: TextStyle(
-                color: Colors.blue,
+                color: textColor,
                 fontSize: fontSize,
                 fontFamily: 'Poppins',
                 fontWeight: fontWeight,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_news/controller/following_controller.dart';
 import 'package:google_news/utils/app_image.dart';
+import 'package:google_news/utils/app_string.dart';
 import 'package:google_news/view/screen/following_screen/widget/follow_container.dart';
 import 'package:google_news/view/screen/following_screen/widget/recenntly_gridview.dart';
 import 'package:google_news/view/widget/custom_button.dart';
@@ -9,47 +10,28 @@ import 'package:google_news/view/widget/custom_outline_button.dart';
 import 'package:google_news/view/widget/custom_text.dart';
 
 import '../../../controller/main_screen_controller.dart';
+import '../main_screen/sliver_appbar/sliver_appbar.dart';
 import 'widget/follow_interests_warp.dart';
 
 class FollowingScreen extends StatelessWidget {
   FollowingScreen({super.key});
 
   MainScreenController mainScreenController = Get.put(MainScreenController());
+
   @override
   Widget build(BuildContext context) {
-
-    var currentTheme = MediaQuery.of(context).platformBrightness ;
-
-    if(currentTheme == Brightness.dark ) {
-      mainScreenController.darkTheme.value = true;
-    } else {
-      mainScreenController.darkTheme.value = false;
-
-    }
     var width = (MediaQuery.of(context).size.width) / 10;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(
+            Icons.add,
+          )),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            title: Obx(() => Text(mainScreenController.title.value)),
-            centerTitle: true,
-            floating: true,
-            snap: true,
-            leading: const Icon(Icons.search),
-            actions: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: ClipOval(child: Image.asset(AppImage.nayem)),
-                  ),
-                ),
-              )
-            ],
-          ),
-
-          SliverList(delegate: SliverChildBuilderDelegate((context, index) {
+          SliverAppBarWidget(),
+          SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -59,7 +41,7 @@ class FollowingScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomText(
-                        title: "Recently followed",
+                        title: AppString.recentlyFollowed,
                         fontWeight: FontWeight.w400,
                         fontSize: 10,
                       ),
@@ -70,13 +52,17 @@ class FollowingScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Obx(() => Container(
-                  width: double.infinity,
-                  height: 8,
-                  color: mainScreenController.darkTheme.value ?  Colors.white12 : Colors.black12,
-                ),),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                      color: mainScreenController.themeContainerColor()
+
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -84,7 +70,7 @@ class FollowingScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
-                            title: "Follow your interests",
+                            title: AppString.recentlyFollowed,
                             fontSize: 24,
                           ),
                           IconButton(
@@ -128,18 +114,19 @@ class FollowingScreen extends StatelessWidget {
                   ),
                 ),
                 Obx(() => Container(
-                  width: double.infinity,
-                  height: 8,
-                  color: mainScreenController.darkTheme.value ?  Colors.white12 : Colors.black12,
+                      width: double.infinity,
+                      height: 8,
+                    color: mainScreenController.themeContainerColor()
+
                 )),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                   child: FollowContainer(),
                 ),
               ],
             );
           }, childCount: 1))
-
         ],
       ),
     );

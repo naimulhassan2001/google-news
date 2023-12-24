@@ -44,7 +44,8 @@ class FollowInterestsWarp extends StatelessWidget {
       children: list.map((item) {
         return Chip(
           shape: const RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Color(0x86EAEAEA)),
+            side: BorderSide(width: 1,
+                color: Color(0x86EAEAEA)),
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           label: Row(

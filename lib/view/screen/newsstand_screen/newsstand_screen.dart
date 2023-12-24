@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_news/view/screen/main_screen/main_screen.dart';
+import 'package:google_news/utils/app_string.dart';
+import 'package:google_news/view/screen/newsstand_screen/widget/catagories_list.dart';
+import 'package:google_news/view/widget/custom_text.dart';
 
 import '../../../controller/main_screen_controller.dart';
 import '../../../utils/app_image.dart';
+import '../main_screen/sliver_appbar/sliver_appbar.dart';
+import 'widget/entertainment_listview.dart';
 
 class NewsStandScreen extends StatelessWidget {
   NewsStandScreen({super.key});
@@ -15,48 +19,78 @@ class NewsStandScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            title: Obx(() => Text(mainScreenController.title.value)),
-            centerTitle: true,
-            floating: true,
-            snap: true,
-            leading: const Icon(Icons.search),
-            actions: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: ClipOval(child: Image.asset(AppImage.nayem)),
-                  ),
-                ),
-              )
-            ],
-          ),
+          SliverAppBarWidget(),
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
             return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Obx(() => Switch(
-                    value: mainScreenController.darkTheme.value,
-                    onChanged: (value) {
-                      mainScreenController.changeTheme(value);
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      title: AppString.suggestedSources,
+                      fontSize: 12,
+                      color: const Color(0x6C000000),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                CategoriesList(
+                    color: Colors.blue, categories: AppString.entertainment),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                    color: mainScreenController.themeContainerColor()
 
-                      if (value == true) {
-                        Get.changeTheme(ThemeData.dark());
-                      } else {
-                        Get.changeTheme(ThemeData.light());
-                      }
+                  ),
+                ),
+                CategoriesList(
+                    color: Colors.black, categories: AppString.foodAndDrink),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                      color: mainScreenController.themeContainerColor()
 
-                      // Get.offAll(MainScreen());
-                    }
+                  ),
+                ),
+                CategoriesList(
+                    color: Colors.deepPurple,
+                    categories: AppString.healthAndFitness),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                      color: mainScreenController.themeContainerColor()
 
+                  ),
+                ),
+                CategoriesList(
+                    color: Colors.brown, categories: AppString.homeAndGarden),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                      color: mainScreenController.themeContainerColor()
 
+                  ),
+                ),
+                CategoriesList(
+                    color: Colors.lightBlue,
+                    categories: AppString.newsAndPolitics),
+                Obx(
+                  () => Container(
+                    width: double.infinity,
+                    height: 8,
+                      color: mainScreenController.themeContainerColor()
 
-
-                    ))
+                  ),
+                ),
+                CategoriesList(
+                    color: Colors.teal, categories: AppString.sports),
               ],
             );
           }, childCount: 1))

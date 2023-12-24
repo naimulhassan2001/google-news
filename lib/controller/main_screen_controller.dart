@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainScreenController extends GetxController {
-  RxInt currentIndex = 2.obs;
+  RxInt currentIndex = 0.obs;
   RxBool darkTheme = false.obs;
   RxBool tabShow = false.obs;
 
@@ -18,19 +19,43 @@ class MainScreenController extends GetxController {
     currentIndex.value = value;
     if (value == 0) {
       title.value = "Google News";
-      tabShow.value = false ;
 
     } else if (value == 1) {
       title.value = "Headlines";
-      tabShow.value = true ;
     } else if (value == 2) {
       title.value = "Following";
-      tabShow.value = false ;
 
     } else if (value == 3) {
       title.value = "Newsstand";
-      tabShow.value = false ;
 
     }
   }
+
+
+  themeCircleBackgroundColor() {
+    return darkTheme.value
+        ? Colors.black
+        : Colors.white ;
+  }
+
+
+
+  themeTextColor(){
+   return darkTheme.value
+        ? Colors.white
+        : Colors.black ;
+  }
+
+
+  themeContainerColor() {
+    return darkTheme.value
+        ? Colors.white12
+        : Colors.black12 ;
+  }
+
+
+
+
+
+
 }

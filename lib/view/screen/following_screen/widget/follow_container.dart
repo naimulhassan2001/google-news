@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_news/controller/main_screen_controller.dart';
 
 import '../../../widget/custom_button.dart';
 import '../../../widget/custom_text.dart';
 
 class FollowContainer extends StatelessWidget {
-  const FollowContainer({super.key});
+  FollowContainer({super.key});
+
+  MainScreenController mainScreenController = Get.put(MainScreenController()) ;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Obx(() => Container(
       height: 140,
       width: double.infinity,
-      decoration: ShapeDecoration(
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(width: 1, color: Color(0x86EAEAEA)),
-          borderRadius: BorderRadius.circular(8),
-        ),
+      decoration: BoxDecoration(
+        color: mainScreenController.darkTheme.value
+            ? Colors.black
+            : Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black38,
+            blurRadius: 1,
+            offset: Offset(0, 1), // Shadow position
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -38,12 +49,14 @@ class FollowContainer extends StatelessWidget {
                     onTap: () {},
                     horizontal: 20,
                     height: 34,
-                    radius: 80),
+                    radius: 80,
+                  color: Color(0xE55460C4),
+                ),
               ],
             )
           ],
         ),
       ),
-    );
+    ));
   }
 }
