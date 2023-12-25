@@ -18,6 +18,7 @@ class FollowingScreen extends StatelessWidget {
 
   MainScreenController mainScreenController = Get.put(MainScreenController());
 
+
   @override
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width) / 10;

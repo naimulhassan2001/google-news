@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,10 +12,7 @@ import '../../../widget/custom_text.dart';
 import '../widget/item.dart';
 
 class ShowDialogFunction {
-
-
   MainScreenController mainScreenController = Get.put(MainScreenController());
-
 
 
   Future<void> showDialogMethod(BuildContext context) async {
@@ -55,14 +54,17 @@ class ShowDialogFunction {
                               CircleAvatar(
                                 radius: 12,
                                 child: ClipOval(
-                                  child: Image.asset(AppImage.nayem, width: 24, height: 24,),
+                                  child: Image.asset(
+                                    AppImage.nayem,
+                                    width: 24,
+                                    height: 24,
+                                  ),
                                 ),
                               ),
                               const SizedBox(
                                 width: 8,
                               ),
                               Column(
-
                                 children: [
                                   CustomText(title: "Naimul Hassan"),
                                   // Expanded(
@@ -79,19 +81,18 @@ class ShowDialogFunction {
                               ),
                               const Spacer(),
                               Container(
-                                height: 24,
+                                  height: 24,
                                   width: 24,
                                   decoration: ShapeDecoration(
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
-                                          width: 1,
-                                          color: mainScreenController.themeTextColor(),),
-                                      borderRadius:
-                                          BorderRadius.circular(80),
+                                        width: 1,
+                                        color: mainScreenController.themeTextColor(),
+                                      ),
+                                      borderRadius: BorderRadius.circular(80),
                                     ),
                                   ),
-                                  child:
-                                      const Icon(Icons.arrow_drop_down))
+                                  child: const Icon(Icons.arrow_drop_down))
                             ],
                           ),
                           const SizedBox(
@@ -108,7 +109,6 @@ class ShowDialogFunction {
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
                                 outlineColor: mainScreenController.themeTextColor(),
-
                                 height: 34,
                               ),
                             ],
@@ -129,25 +129,21 @@ class ShowDialogFunction {
                           const SizedBox(
                             height: 16,
                           ),
-                          Obx(() =>  Switch(value: mainScreenController.darkTheme.value, onChanged: (value) {
+                          Obx(() => Switch(
+                              value: mainScreenController.isDark.value,
+                              onChanged: (value) {
+
+                                if (value == true) {
+                                  Get.changeTheme(ThemeData.dark());
+                                  mainScreenController.changeTheme(value);
+
+                                } else {
+                                  Get.changeTheme(ThemeData.light());
+                                  mainScreenController.changeTheme(value);
 
 
-                            mainScreenController.changeTheme(value) ;
-
-
-                            if(value == true) {
-                              Get.changeTheme(ThemeData.dark());
-
-                            } else {
-                              Get.changeTheme(ThemeData.light());
-
-                            }
-
-                          })
-                          )
-
-
-
+                                }
+                              }))
                         ],
                       ),
                     ),
@@ -155,8 +151,7 @@ class ShowDialogFunction {
                       height: 16,
                     ),
                     ProfileItem(
-                        title: AppString.newsSetting,
-                        icon: Icons.settings),
+                        title: AppString.newsSetting, icon: Icons.settings),
                     const SizedBox(
                       height: 16,
                     ),

@@ -20,14 +20,15 @@ class MainScreen extends StatelessWidget {
 
   MainScreenController mainScreenController = Get.put(MainScreenController());
 
+
   @override
   Widget build(BuildContext context) {
     var currentTheme = MediaQuery.of(context).platformBrightness;
 
     if (currentTheme == Brightness.dark) {
-      mainScreenController.darkTheme.value = true;
+      mainScreenController.isDark.value = true;
     } else {
-      mainScreenController.darkTheme.value = false;
+      mainScreenController.isDark.value = false;
     }
     return SafeArea(
         child: DefaultTabController(

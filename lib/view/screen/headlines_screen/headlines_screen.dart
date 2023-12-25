@@ -25,6 +25,7 @@ class HeadLinesScreen extends StatelessWidget {
                       centerTitle: true,
                       floating: true,
                       snap: true,
+
                       leading: const Icon(Icons.search),
                       actions: [
                         Center(

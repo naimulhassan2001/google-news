@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class MainScreenController extends GetxController {
   RxInt currentIndex = 0.obs;
-  RxBool darkTheme = false.obs;
+  RxBool isDark = false.obs;
   RxBool tabShow = false.obs;
 
   RxString aa = "Latest".obs ;
@@ -12,7 +12,7 @@ class MainScreenController extends GetxController {
 
 
   changeTheme(bool value) {
-    darkTheme.value =value ;
+    isDark.value =value ;
   }
 
   bottomOnTap(int value) {
@@ -33,7 +33,7 @@ class MainScreenController extends GetxController {
 
 
   themeCircleBackgroundColor() {
-    return darkTheme.value
+    return isDark.value
         ? Colors.black
         : Colors.white ;
   }
@@ -41,14 +41,14 @@ class MainScreenController extends GetxController {
 
 
   themeTextColor(){
-   return darkTheme.value
+   return isDark.value
         ? Colors.white
         : Colors.black ;
   }
 
 
   themeContainerColor() {
-    return darkTheme.value
+    return isDark.value
         ? Colors.white12
         : Colors.black12 ;
   }

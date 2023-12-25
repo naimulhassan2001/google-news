@@ -13,6 +13,8 @@ class NewsStandScreen extends StatelessWidget {
   NewsStandScreen({super.key});
 
   MainScreenController mainScreenController = Get.put(MainScreenController());
+  // ThemeManager themeManager = Get.put(ThemeManager()) ;
+
 
   @override
   Widget build(BuildContext context) {

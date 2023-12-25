@@ -17,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
               Center(
                 child: Container(
                   width: double.infinity,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_news/controller/main_screen_controller.dart';
 import 'package:google_news/view/widget/custom_text.dart';
 
+
 class EntertainmentListView extends StatelessWidget {
   EntertainmentListView({
     super.key,
@@ -12,6 +13,7 @@ class EntertainmentListView extends StatelessWidget {
   Color color;
 
   MainScreenController mainScreenController = Get.put(MainScreenController());
+
 
   @override
   Widget build(BuildContext context) {
